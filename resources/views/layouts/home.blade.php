@@ -26,8 +26,8 @@
 	        </div>
 	        <div class="uk-navbar-right">
 	          <ul class="uk-navbar-nav uk-visible@m" data-uk-scrollspy-nav="closest: li; scroll: true; offset: 80">
-	            <li class="uk-active"><a href="index-2.html">Courses</a></li>
-	            <li ><a href="events.html">Events</a></li>
+	            <li class="uk-active"><a href="/">Courses</a></li>
+	            <li ><a href="/">Events</a></li>
 	          </ul>
             {{-- @if (Auth::check())
                         <div >

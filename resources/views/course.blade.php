@@ -212,10 +212,31 @@
       <div class="uk-width-1-3@m">
         <div data-uk-sticky="offset: 100; bottom: true; media: @m">
           <div class="uk-card uk-card-default uk-card-body uk-width-1-1 uk-border-rounded-large">
-            <h3>Tsh {{ $course->price }}/=</h3>
+                @if ($purchased_course)
+                    Rating: {{ $course->rating }} / 5
+                    <br />
+                    <b>Rate the course:</b>
+                    <br />
+                    <form action="{{ route('courses.rating', [$course->id]) }}" method="post">
+                        {{ csrf_field() }}
+                        <select name="rating">
+                            <option value="1">1 - Awful</option>
+                            <option value="2">2 - Not too good</option>
+                            <option value="3">3 - Average</option>
+                            <option value="4" selected>4 - Quite good</option>
+                            <option value="5">5 - Awesome!</option>
+                        </select>
+                        <input type="submit" value="Rate" />
+                    </form>
+                    <hr />
+                  @else
+                  <h3>Tsh {{ $course->price }}/=</h3>
+              @endif
             
             @if (\Auth::check())
-               <a href="{{ route('payment.make') }}" class="uk-button uk-button-primary-preserve uk-button-large uk-width-1-1">Buy Now</a>
+               @if ($course->students()->where('user_id', \Auth::id())->count() == 0)
+                  <a href="{{ route('payment.make', [$course->slug]) }}" class="uk-button uk-button-primary-preserve uk-button-large uk-width-1-1">Buy Now</a>
+                @endif
             @else
               <a href="{{ route('auth.register') }}?redirect_url={{ route('courses.show', [$course->slug]) }}" class="uk-button uk-button-primary-preserve uk-button-large uk-width-1-1">Buy Now</a>
             @endif

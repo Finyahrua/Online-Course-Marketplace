@@ -11,8 +11,8 @@ Route::get('lesson/{course_id}/{slug}', ['uses' => 'LessonsController@show', 'as
 Route::post('lesson/{slug}/test', ['uses' => 'LessonsController@test', 'as' => 'lessons.test']);
 
 //payment
-Route::get('/payment/make', 'PaymentsController@make')->name('payment.make');
-Route::post('/checkout', 'PaymentsController@checkout');
+Route::get('payment/{slug}', 'PaymentsController@show')->name('payment.make');
+Route::post('/checkout', 'PaymentsController@payment')->name('payment.checkout');
 
 
 // Authentication Routes...
