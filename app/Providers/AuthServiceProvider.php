@@ -29,7 +29,7 @@ class AuthServiceProvider extends ServiceProvider
 
         $user = \Auth::user();
 
-        
+        $permissionArray=[];
         if (! app()->runningInConsole()) {
             $roles = Role::with('permission')->get();
 

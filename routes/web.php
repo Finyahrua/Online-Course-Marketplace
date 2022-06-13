@@ -1,4 +1,7 @@
 <?php
+
+
+
 Route::get('/', 'HomeController@index');
 Route::get('course/{slug}', ['uses' => 'CoursesController@show', 'as' => 'courses.show']);
 Route::post('course/payment', ['uses' => 'CoursesController@payment', 'as' => 'courses.payment']);
@@ -6,6 +9,11 @@ Route::post('course/{course_id}/rating', ['uses' => 'CoursesController@rating', 
 
 Route::get('lesson/{course_id}/{slug}', ['uses' => 'LessonsController@show', 'as' => 'lessons.show']);
 Route::post('lesson/{slug}/test', ['uses' => 'LessonsController@test', 'as' => 'lessons.test']);
+
+//payment
+Route::get('/payment/make', 'PaymentsController@make')->name('payment.make');
+Route::post('/checkout', 'PaymentsController@checkout');
+
 
 // Authentication Routes...
 $this->get('login', 'Auth\LoginController@showLoginForm')->name('auth.login');

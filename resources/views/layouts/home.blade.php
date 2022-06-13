@@ -1,4 +1,247 @@
 <!DOCTYPE html>
+<html lang="en-gb" dir="ltr">
+
+
+<!--   19 Nov 2019 03:38:47 GMT -->
+<!--  --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- / -->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OCM</title>
+  <link rel="shortcut icon" type="image/png" href="img/favicon.png" >
+  <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,600,700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
+  <script src="{{ asset('js/uikit.js') }}"></script>
+</head>
+
+<body class="uk-background-body">
+
+<header id="header">
+	<div data-uk-sticky="animation: uk-animation-slide-top; sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; cls-inactive: uk-navbar-transparent ; top: #header" >
+	  <nav class="uk-navbar-container uk-letter-spacing-small uk-text-bold" >
+	    <div class="uk-container" >
+	      <div class="uk-position-z-index" data-uk-navbar>
+	        <div class="uk-navbar-left">
+	          <a class="uk-navbar-item uk-logo" href="/">OCM</a>
+	        </div>
+	        <div class="uk-navbar-right">
+	          <ul class="uk-navbar-nav uk-visible@m" data-uk-scrollspy-nav="closest: li; scroll: true; offset: 80">
+	            <li class="uk-active"><a href="index-2.html">Courses</a></li>
+	            <li ><a href="events.html">Events</a></li>
+	          </ul>
+            {{-- @if (Auth::check())
+                        <div >
+                            Logged in as {{ Auth::user()->name }}
+                            <form action="{{ route('auth.logout') }}" method="post">
+                                {{ csrf_field() }}
+                                <input type="submit" value="Logout" class="btn btn-info">
+                            </form>
+                        </div>
+                    @else --}}
+                        {{-- <form action="{{ route('auth.login') }}" method="post">
+                            {{ csrf_field() }}
+                            <input type="email" name="email" placeholder="Email" />
+                            <input type="password" name="password" placeholder="Password" />
+                            <input type="submit" value="Login" class=" uk-active">
+                        </form> --}}
+                        {{-- <div><a class="uk-button uk-button-primary-light" href="{{ route('auth.login') }}">Sign In</a></div>
+	          </div>   
+                    @endif
+	          </div> --}}
+            <div style="margin-right:60px"></div>
+
+            @if (Auth::check())
+             <div class="uk-navbar-item">
+
+                 <form action="{{ route('auth.logout') }}" method="post">
+                                {{ csrf_field() }}
+                    <input type="submit" value="Logout" class="uk-button uk-button-danger">
+                </form>
+	          </div> 
+            @else
+            <div class="uk-navbar-item">
+	            <div><a class="uk-button uk-button-default" href="{{ route('auth.register') }}">Register</a></div>
+	          </div> 
+               <div class="uk-navbar-item">
+	            <div><a class="uk-button uk-button-primary-light" href="{{ route('auth.login') }}">login</a></div>
+	          </div>    
+
+            @endif
+	             
+
+           
+	          <a class="uk-navbar-toggle uk-hidden@m" href="#offcanvas" data-uk-toggle><span
+	            data-uk-navbar-toggle-icon></span></a>
+	        </div>
+	      </div>
+	    </div>
+	  </nav>
+	</div>
+</header>
+
+
+{{-- 
+<div class="uk-section uk-margin-top">
+  <div class="uk-container">
+    <div class="uk-grid-small uk-flex uk-flex-middle" data-uk-grid>
+      <div class="uk-width-expand@m">
+        <h2>Popular Courses</h2>
+      </div>
+    </div>
+    <div class="uk-child-width-1-2@s uk-child-width-1-3@m uk-grid-match uk-margin-medium-top" data-uk-grid>
+      <div>
+        <div class="uk-card uk-card-small uk-card-default uk-card-hover uk-border-rounded-large uk-overflow-hidden">
+          <div class="uk-card-media-top uk-inline uk-light">
+            <img src="https://source.unsplash.com/gMsnXqILjp4/640x380" alt="Course Title">
+            <div class="uk-position-cover uk-overlay-xlight"></div>
+            <div class="uk-position-small uk-position-top-left">
+              <span class="uk-label uk-text-bold uk-text-price">$27.00</span>
+            </div>
+            <div class="uk-position-small uk-position-top-right">
+              <a href="#" class="uk-icon-button uk-like uk-position-z-index uk-position-relative" data-uk-icon="heart"></a>
+            </div>            
+          </div>
+          <div class="uk-card-body">
+            <h3 class="uk-card-title uk-margin-small-bottom">Business Presentation Course</h3>
+            <div class="uk-text-muted uk-text-small">Thomas Haller</div>
+            <div class="uk-text-muted uk-text-xxsmall uk-rating uk-margin-small-top">
+              <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.75"></span>
+              <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.75"></span>
+              <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.75"></span>
+              <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.75"></span>
+              <span class="uk-rating-filled" data-uk-icon="icon: star; ratio: 0.75"></span>
+              <span class="uk-margin-small-left uk-text-bold">5.0</span>
+              <span>(324)</span>
+            </div>
+          </div>
+          <a href="course.html" class="uk-position-cover"></a>
+        </div>
+      </div>
+          
+    </div>
+    <div class="uk-text-center uk-margin-large-top">
+        
+  </div>
+</div> --}}
+@yield('main')
+</body>
+
+
+<footer class="uk-section uk-section-secondary uk-section-large">
+	<div class="uk-container uk-text-muted">
+		<div class="uk-child-width-1-2@s uk-child-width-1-5@m" data-uk-grid>
+			<div>
+				<h5>Company</h5>
+				<ul class="uk-list uk-text-small">
+					<li><a class="uk-link-muted" href="#">Marketing Tools</a></li>
+					<li><a class="uk-link-muted" href="#">Presentations</a></li>
+					<li><a class="uk-link-muted" href="#">Professionals</a></li>
+					<li><a class="uk-link-muted" href="#">Appointments</a></li>
+					<li><a class="uk-link-muted" href="#">Stores</a></li>
+				</ul>
+			</div>
+			<div>
+				<h5>Community</h5>
+				<ul class="uk-list uk-text-small">
+					<li><a class="uk-link-muted" href="#">Webinars</a></li>
+					<li><a class="uk-link-muted" href="#">Developers</a></li>
+					<li><a class="uk-link-muted" href="#">Platforms</a></li>
+					<li><a class="uk-link-muted" href="#">Workshops</a></li>
+					<li><a class="uk-link-muted" href="#">Local Meetups</a></li>
+				</ul>
+			</div>
+			<div>
+				<h5>Join Us</h5>
+				<ul class="uk-list uk-text-small">
+					<li><a class="uk-link-muted" href="#">Our Initiatives</a></li>
+					<li><a class="uk-link-muted" href="#">Giving Back</a></li>
+					<li><a class="uk-link-muted" href="#">Communities</a></li>
+					<li><a class="uk-link-muted" href="#">Youth Program</a></li>
+					<li><a class="uk-link-muted" href="#">Charity</a></li>
+				</ul>
+			</div>
+			<div>
+				<h5>Contact</h5>
+				<ul class="uk-list uk-text-small">
+					<li><a class="uk-link-muted" href="#">Contact Form</a></li>
+					<li><a class="uk-link-muted" href="#">LinkedIn</a></li>
+					<li><a class="uk-link-muted" href="#">Facebook</a></li>
+					<li><a class="uk-link-muted" href="#">Instagram</a></li>
+					<li><a class="uk-link-muted" href="#">Visit Us</a></li>
+				</ul>
+			</div>
+			<div>
+				<div class="uk-margin">
+					<a href="#" class="uk-logo">Sprin</a>
+				</div>
+				<div class="uk-margin uk-text-small">				
+					<p><a href="templateshub.net">Templateshub</a></p>
+				</div>
+				<div class="uk-margin">
+					<div data-uk-grid class="uk-child-width-auto uk-grid-small">
+						<div class="uk-first-column">
+							<a href="https://www.facebook.com/" data-uk-icon="icon: facebook" class="uk-icon-link uk-icon"
+								target="_blank"></a>
+						</div>
+						<div>
+							<a href="https://www.instagram.com/" data-uk-icon="icon: instagram" class="uk-icon-link uk-icon"
+								target="_blank"></a>
+						</div>
+						<div>
+							<a href="mailto:info@blacompany.com" data-uk-icon="icon: mail" class="uk-icon-link uk-icon"
+								target="_blank"></a>
+						</div>
+					</div>
+				</div>
+			</div>			
+		</div>
+	</div>
+</footer>
+
+<div id="offcanvas" data-uk-offcanvas="flip: true; overlay: true">
+  <div class="uk-offcanvas-bar">
+    <a class="uk-logo" href="index-2.html">Sprin</a>
+    <button class="uk-offcanvas-close" type="button" data-uk-close="ratio: 1.2"></button>
+    <ul class="uk-nav uk-nav-primary uk-nav-offcanvas uk-margin-medium-top uk-text-center">
+      <li class="uk-active"><a href="index-2.html">Courses</a></li>
+      <li ><a href="events.html">Events</a></li>
+      <li ><a href="course.html">Course</a></li>
+      <li ><a href="event.html">Event</a></li>
+      <li ><a href="search.html">Search</a></li>
+      <li ><a href="sign-in.html">Sign In</a></li>
+      <li ><a href="sign-up.html">Sign Up</a></li>
+    </ul>
+    <div class="uk-margin-medium-top">
+      <a class="uk-button uk-width-1-1 uk-button-primary-light" href="sign-up.html">Sign Up</a>
+    </div>
+    <div class="uk-margin-medium-top uk-text-center">
+      <div data-uk-grid class="uk-child-width-auto uk-grid-small uk-flex-center">
+        <div>
+          <a href="https://twitter.com/" data-uk-icon="icon: twitter" class="uk-icon-link" target="_blank"></a>
+        </div>
+        <div>
+          <a href="https://www.facebook.com/" data-uk-icon="icon: facebook" class="uk-icon-link" target="_blank"></a>
+        </div>
+        <div>
+          <a href="https://www.instagram.com/" data-uk-icon="icon: instagram" class="uk-icon-link" target="_blank"></a>
+        </div>
+        <div>
+          <a href="https://vimeo.com/" data-uk-icon="icon: vimeo" class="uk-icon-link" target="_blank"></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</html>
+
+
+
+
+<!--   19 Nov 2019 03:39:33 GMT -->
+
+
+
+{{-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -9,7 +252,10 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>{{ $page_title or 'Quick LMS' }}</title>
+    <title> OCM</title>
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon"/>
+    
+   
 
     <!-- Bootstrap Core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -27,7 +273,6 @@
 </head>
 
 <body>
-
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
@@ -41,7 +286,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="/">Quick LMS</a>
+                        <a class="navbar-brand" href="/">OCM</a>
                     </div>
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -116,7 +361,7 @@
         <footer>
             <div class="row">
                 <div class="col-lg-12">
-                    <p>Copyright &copy; Quick LMS 2017</p>
+                    <p>Copyright &copy; OCM 2017</p>
                 </div>
             </div>
         </footer>
@@ -132,4 +377,4 @@
 
 </body>
 
-</html>
+</html> --}}

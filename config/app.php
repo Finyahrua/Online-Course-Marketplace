@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => 'Quick LMS',
+    'name' => 'OCM LMS',
 
     /*
     |--------------------------------------------------------------------------
@@ -182,7 +182,7 @@ return [
         Laravel\Tinker\TinkerServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
-        Unisharp\Laravelfilemanager\LaravelFilemanagerServiceProvider::class,
+        //Unisharp\Laravelfilemanager\LaravelFilemanagerServiceProvider::class,
         Spatie\MediaLibrary\MediaLibraryServiceProvider::class,
         
         /*

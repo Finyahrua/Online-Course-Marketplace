@@ -16,7 +16,18 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
-
+        \Braintree\Configuration::environment(env('BRAINTREE_ENV'));
+        \Braintree\Configuration::merchantId(env('BRAINTREE_MERCHANT_ID'));
+        \Braintree\Configuration::publicKey(env('BRAINTREE_PUBLIC_KEY'));
+        \Braintree\Configuration::privateKey(env('BRAINTREE_PRIVATE_KEY'));
+  
+        // $gateway = new \Braintree\Gateway([
+        //     'environment' => config('services.braintree.environment'),
+        //     'merchantId' => config('services.braintree.merchantId'),
+        //     'publicKey' => config('services.braintree.publicKey'),
+        //     'privateKey' => config('services.braintree.privateKey')
+        // ]);
+        // $token = $gateway->ClientToken()->generate();
     }
 
     /**

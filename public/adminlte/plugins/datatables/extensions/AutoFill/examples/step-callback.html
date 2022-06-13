@@ -32,7 +32,7 @@ $(document).ready(function() {
 				val += (x<0 || y<0 ? -100 : 100); // - if going back up, + if going down
 
 				// Format for the currency column
-				return '$'+val.toString().replace( /\B(?=(\d{3})+(?!\d))/g, ',' );
+				return 'Tsh'+val.toString().replace( /\B(?=(\d{3})+(?!\d))/g, ',' );
 			}
 		} ]
 	} );

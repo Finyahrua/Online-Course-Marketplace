@@ -1,21 +1,22 @@
 @extends('layouts.auth')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
-                <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
+<div class="uk-width-3-4@s">
+      <div class="uk-text-center uk-margin-bottom">
+        <a class="uk-logo uk-text-primary uk-text-bold" href="/">OCM</a>
+      </div>
+      <div class="uk-text-center uk-margin-medium-bottom">
+        <h1 class="uk-letter-spacing-small">Register to OCM</h1>
+      </div>
+            <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
                         {{ csrf_field() }}
                         <input type="hidden" name="redirect_url" value="{{ request('redirect_url', '/') }}">
 
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">Name</label>
+                        <div class="uk-width-1-1 uk-margin{{ $errors->has('name') ? ' has-error' : '' }}">
+                           <label class="uk-form-label" for="name">Full name</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
+                                <input id="name" type="text" class="uk-input uk-form-large" name="name" value="{{ old('name') }}" required autofocus placeholder="Your name ...">
 
                                 @if ($errors->has('name'))
                                     <span class="help-block">
@@ -25,11 +26,11 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+                        <div class="uk-width-1-1 uk-margin{{ $errors->has('email') ? ' has-error' : '' }}">
+                            <label for="email" class="uk-form-label">E-Mail Address</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+                                <input id="email" type="email" class="uk-input uk-form-large" name="email" value="{{ old('email') }}" required placeholder="abc@mail.com">
 
                                 @if ($errors->has('email'))
                                     <span class="help-block">
@@ -39,11 +40,11 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
+                        <div class="uk-width-1-1 uk-margin{{ $errors->has('password') ? ' has-error' : '' }}">
+                            <label for="password" class="uk-form-label">Password</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
+                                <input id="password" type="password" class="uk-input uk-form-large" name="password" required placeholder="password">
 
                                 @if ($errors->has('password'))
                                     <span class="help-block">
@@ -53,26 +54,37 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
+                        <div class="uk-width-1-1 uk-margin">
+                            <label for="password-confirm" class="uk-form-label">Confirm Password</label>
 
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                                <input id="password-confirm" type="password" class="uk-input uk-form-large" name="password_confirmation" required placeholder="confirm password">
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
+                        <div class="uk-width-1-1 uk-margin">
+                            <div class="uk-width-1-1 uk-text-center">
+                                <button type="submit" class="uk-button uk-button-primary uk-button-large">
                                     Register
                                 </button>
-                                <a href="{{ route('auth.login') }}">Existing user? Log in here</a>
                             </div>
                         </div>
-                    </form>
-                </div>
+                    </form>    </div>
             </div>
+            <div class="uk-width-1-2@m uk-padding-large uk-flex uk-flex-middle uk-flex-center uk-light
+                uk-background-cover uk-background-norepeat uk-background-blend-overlay uk-overlay-blend" 
+                style="background-image: url(https://source.unsplash.com/nF8xhLMmg0c/680x1000);" data-uk-height-viewport>
+                <div>
+            <div class="uk-text-center">
+                <h2 class="uk-h1 uk-letter-spacing-small">Welcome Back</h2>
+            </div>
+        <div class="uk-margin-top uk-margin-medium-bottom uk-text-center">
+            <p>Already signed up, enter your details and start the learning today</p>
         </div>
+      <div class="uk-width-1-1 uk-text-center">
+        <a href="{{ route('auth.login') }}" class="uk-button uk-button-primary uk-button-large">Login</a>
+      </div>
     </div>
+  </div>
 </div>
 @endsection

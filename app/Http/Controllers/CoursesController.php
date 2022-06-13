@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Course;
 use Illuminate\Http\Request;
 use Stripe\Stripe;
 use Stripe\Charge;
 use Stripe\Customer;
+
 
 class CoursesController extends Controller
 {
