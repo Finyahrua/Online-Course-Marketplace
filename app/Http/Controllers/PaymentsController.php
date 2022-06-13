@@ -5,25 +5,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Braintree;
+use App\Course;
+
 class PaymentsController extends Controller
 {
     //
     public function make(Request $request){
-        $payload = $request->input('payload', false);
-
-        $nonce=isset($payload['nonce']) ? $payload['nonce'] : 'default';
-        // $nonce = $payload['nonce'];
-
-        $status = Braintree\Transaction::sale([
-            'amount' => '50.00',
-            'paymentMethodNonce' => $nonce,
-            'options' => [
-                'submitForSettlement' => True
-            ]
-        ]);
 
         return view('payment', [
-            'status' => $status
+            
         ]);
 }
     public function checkout(Request $request){
@@ -60,7 +50,7 @@ class PaymentsController extends Controller
             // header("Location: " . $baseUrl . "index.php");
             return back()->withErrors('error', $errorString);
         }
-
+        return redirect()->back()->with('success', 'Payment completed successfully.');
     }
     
 }

@@ -286,7 +286,7 @@
     <p>
         @if (\Auth::check())
             @if ($course->students()->where('user_id', \Auth::id())->count() == 0)
-            <form action="{{ route('courses.payment') }}" method="POST">
+            {{-- <form action="{{ route('courses.payment') }}" method="POST">
                 <input type="hidden" name="course_id" value="{{ $course->id }}" />
                 <input type="hidden" name="amount" value="{{ $course->price * 100 }}" />
                 <script
@@ -300,8 +300,60 @@
                     data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
                     data-locale="auto"
                     data-zip-code="false">
-                </script>
-                {{ csrf_field() }}
+                </script> --}}
+                <form method="post" id="payment-form" action="{{ route('courses.payment') }}">
+                  {{ csrf_field() }}
+                  <input type="hidden" name="course_id" value="{{ $course->id }}" />
+                  <section>
+                      <label for="amount">
+                          <span class="input-label">Amount</span>
+                          <div class="input-wrapper amount-wrapper">
+                              <input id="amount" name="amount" type="tel" min="1" placeholder="Amount" value="{{ $course->price }}">
+                          </div>
+                      </label>
+
+                      <div class="bt-drop-in-wrapper">
+                          <div id="bt-dropin"></div>
+                      </div>
+                  </section>
+
+                  <input id="nonce" name="payment_method_nonce" type="hidden" />
+                  <button class="button" type="submit"><span>Pay Now</span></button>
+              </form>
+
+              <script src="https://js.braintreegateway.com/web/dropin/1.33.2/js/dropin.min.js"></script>
+                  <script>
+                      var form = document.querySelector('#payment-form');
+                      
+
+                      braintree.dropin.create({
+                        authorization: "{{ Braintree\ClientToken::generate() }}",
+                        selector: '#bt-dropin',
+                        paypal: {
+                          flow: 'vault'
+                        }
+                      }, function (createErr, instance) {
+                        if (createErr) {
+                          console.log('Create Error', createErr);
+                          return;
+                        }
+                        form.addEventListener('submit', function (event) {
+                          event.preventDefault();
+
+                          instance.requestPaymentMethod(function (err, payload) {
+                            if (err) {
+                              console.log('Request Payment Method Error', err);
+                              return;
+                            }
+
+                            // Add the nonce to the form and submit
+                            document.querySelector('#nonce').value = payload.nonce;
+                            form.submit();
+                          });
+                        });
+                      });
+                  </script>
+                
             </form>
             @endif
         @else
