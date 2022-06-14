@@ -69,7 +69,7 @@
                     <span>({{ $course->students()->count() }})</span>
                     </div>
                 </div>
-                <a href="course.html" class="uk-position-cover"></a>
+                <a href="{{ route('courses.show', [$course->slug]) }}" class="uk-position-cover"></a>
                 </div>
             </div>
             @endforeach

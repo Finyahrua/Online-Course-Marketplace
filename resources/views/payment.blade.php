@@ -16,28 +16,38 @@
                     </ul>
                 </div>
             @endif
-            <form method="post" id="payment-form" action="{{ route('payment.checkout') }}">
-                {{ csrf_field() }}
-            <section>
-                <div class="uk-grid-medium uk-flex-middle" data-uk-grid>
-                    <div class="uk-width-expand">
-                        <h4 class="uk-comment-title uk-margin-remove">
-                            Buy the course for:     
-                            <span style="color:#6BE181;margin-left:40px"> Tsh {{ $course->price}}/=</span> 
-                        </h4>
-                    </div>
+            @if ($purchased_course)
+                <div class="alert alert-success" style="margin-top: 40px">
+                    <h3>Course purchased succesfully... <br>Happy learning</h3>
+                   {{-- <a href="{{ route('courses.show', $course->slug) }}">Go to the course</a> --}}
+                   <button class="uk-button uk-button-primary-preserve uk-button-large " style="margin-top: 10px" ><a href="{{ route('courses.show', $course->slug) }}"><span style="color: #ffff">Go to the course</span></a></button>
                 </div>
-                <input type="hidden" name="amount" value="{{ $course->price}}" />
-                <input type="hidden" name="course_id" value="{{ $course->id }}" />
-                <div class="bt-drop-in-wrapper">
-                    <div id="bt-dropin"></div>
-                </div>
-            </section>
+            @else
+                    <form method="post" id="payment-form" action="{{ route('payment.checkout') }}">
+                        {{ csrf_field() }}
+                    <section>
+                        <div class="uk-grid-medium uk-flex-middle" data-uk-grid>
+                            <div class="uk-width-expand">
+                                <h4 class="uk-comment-title uk-margin-remove">
+                                    Buy the course for:     
+                                    <span style="color:#6BE181;margin-left:40px"> Tsh {{ $course->price}}/=</span> 
+                                </h4>
+                            </div>
+                        </div>
+                        <input type="hidden" name="amount" value="{{ $course->price}}" />
+                        <input type="hidden" name="course_id" value="{{ $course->id }}" />
+                        <div class="bt-drop-in-wrapper">
+                            <div id="bt-dropin"></div>
+                        </div>
+                    </section>
 
-            <input id="nonce" name="payment_method_nonce" type="hidden" />
-            <button class="uk-button uk-button-primary-preserve uk-button-large " type="submit"><span>Pay Now</span></button>
-        </form>
-
+                    <input id="nonce" name="payment_method_nonce" type="hidden" />
+                    {{-- wait for the loading to complete before showing the submit button --}}
+                    
+                    
+                    <button class="uk-button uk-button-primary-preserve uk-button-large " type="submit"><span>Pay Now</span></button>
+                </form>
+            @endif
         <script src="https://js.braintreegateway.com/web/dropin/1.33.2/js/dropin.min.js"></script>
             <script>
                 var form = document.querySelector('#payment-form');

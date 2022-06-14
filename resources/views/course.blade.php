@@ -66,9 +66,9 @@
                   <tbody>
                     @foreach ($course->publishedLessons as $lesson)
                         {{-- @if ($lesson->free_lesson) --}}
-                            <tr class="{{$lesson->free_lesson ? "uk-text-primary" :"uk-text-muted"  }}">
-                            <td class="uk-table-expand"><span class="uk-margin-small-right" data-uk-icon="play-circle"></span><a class="{{$lesson->free_lesson ? "uk-text-primary" :"uk-text-muted"  }}" href="{{ route('lessons.show', [$lesson->course_id, $lesson->slug]) }}" data-uk-toggle>{{ $lesson->title }}</a></td>
-                            <td><span data-uk-icon="{{$lesson->free_lesson ? "unlock" :"lock"  }}"></span></td>
+                            <tr class="{{$lesson->free_lesson || $purchased_course ? "uk-text-primary" :"uk-text-muted"  }}">
+                            <td class="uk-table-expand"><span class="uk-margin-small-right" data-uk-icon="play-circle"></span><a class="{{$lesson->free_lesson || $purchased_course  ? "uk-text-primary" :"uk-text-muted"  }}" href="{{ route('lessons.show', [$lesson->course_id, $lesson->slug]) }}" data-uk-toggle>{{ $lesson->title }}</a></td>
+                            <td><span data-uk-icon="{{$lesson->free_lesson || $purchased_course  ? "unlock" :"lock"  }}"></span></td>
                             {{-- <td class="uk-table-shrink">04:24</td> --}}
                             </tr>
                         {{-- @endif --}}
@@ -253,34 +253,13 @@
             </ul>
             <p class="uk-text-center"><a href="admin@mail.com" class="uk-link-muted" data-uk-scroll="offset: 100">Have a question, contact us</a></p>
           </div>			
-          {{-- <h3>Tags</h3>
-          <div data-uk-margin>
-            <a class="uk-display-inline-block" href="#"><span class="uk-label uk-label-light">UX</span></a>
-            <a class="uk-display-inline-block" href="#"><span class="uk-label uk-label-light">Design</span></a>
-            <a class="uk-display-inline-block" href="#"><span class="uk-label uk-label-light">UI</span></a>
-            <a class="uk-display-inline-block" href="#"><span class="uk-label uk-label-light">Experience</span></a>          
-          </div> --}}
-          {{-- <h3>Share Course</h3>
-          <div class="uk-margin">
-            <div data-uk-grid class="uk-child-width-auto uk-grid-small">
-              <div>
-                <a href="#" data-uk-icon="icon: facebook" class="uk-icon-button facebook" target="_blank"></a>
-              </div>
-              <div>
-                <a href="#" data-uk-icon="icon: linkedin" class="uk-icon-button linkedin" target="_blank"></a>
-              </div>
-              <div>
-                <a href="#" data-uk-icon="icon: twitter" class="uk-icon-button twitter" target="_blank"></a>
-              </div>
-            </div>
-          </div> --}}
         </div>
       </div>
     </div>
   </div>
 </div>
 
-
+{{-- 
     <h2>{{ $course->title }}</h2>
 
     @if ($purchased_course)
@@ -307,21 +286,6 @@
     <p>
         @if (\Auth::check())
             @if ($course->students()->where('user_id', \Auth::id())->count() == 0)
-            {{-- <form action="{{ route('courses.payment') }}" method="POST">
-                <input type="hidden" name="course_id" value="{{ $course->id }}" />
-                <input type="hidden" name="amount" value="{{ $course->price * 100 }}" />
-                <script
-                    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                    data-key="{{ env('PUB_STRIPE_API_KEY') }}"
-                    data-amount="{{ $course->price * 100 }}"
-                    data-currency="usd"
-                    data-name="OCM"
-                    data-label="Buy course (${{ $course->price }})"
-                    data-description="Course: {{ $course->title }}"
-                    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-                    data-locale="auto"
-                    data-zip-code="false">
-                </script> --}}
                 <form method="post" id="payment-form" action="{{ route('courses.payment') }}">
                   {{ csrf_field() }}
                   <input type="hidden" name="course_id" value="{{ $course->id }}" />
@@ -389,6 +353,6 @@
         <a href="{{ route('lessons.show', [$lesson->course_id, $lesson->slug]) }}">{{ $lesson->title }}</a>
         <p>{{ $lesson->short_text }}</p>
         <hr />
-    @endforeach
+    @endforeach --}}
 
 @endsection

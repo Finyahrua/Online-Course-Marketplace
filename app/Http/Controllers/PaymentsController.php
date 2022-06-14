@@ -22,8 +22,9 @@ class PaymentsController extends Controller
         $this->createBrainTreePayment($request);
 
         $course->students()->attach(\Auth::id());
-
-        return redirect()->back()->with('success', 'Payment completed successfully.');
+        //show that payment has beenredirect user to a specific course which is purchased 
+        // return redirect()->route('courses.show', $course->slug);
+         return redirect()->back()->with('success', 'Payment completed successfully.');
     }
     private function createBrainTreePayment($request)
     {
