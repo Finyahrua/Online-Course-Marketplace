@@ -36,6 +36,7 @@
                         </div>
                         <input type="hidden" name="amount" value="{{ $course->price}}" />
                         <input type="hidden" name="course_id" value="{{ $course->id }}" />
+                        {{-- <input type="hidden" name="user_name" value="{{ $user->name }}" /> --}}
                         <div class="bt-drop-in-wrapper">
                             <div id="bt-dropin"></div>
                         </div>
@@ -45,9 +46,10 @@
                     {{-- wait for the loading to complete before showing the submit button --}}
                     
                     
-                    <button class="uk-button uk-button-primary-preserve uk-button-large " type="submit"><span>Pay Now</span></button>
+                    <button id="mybutton" class="uk-button uk-button-primary-preserve uk-button-large " type="submit" ><span>Pay Now</span></button>
                 </form>
             @endif
+            
         <script src="https://js.braintreegateway.com/web/dropin/1.33.2/js/dropin.min.js"></script>
             <script>
                 var form = document.querySelector('#payment-form');
@@ -56,9 +58,8 @@
                 braintree.dropin.create({
                 authorization: "{{ Braintree\ClientToken::generate() }}",
                 selector: '#bt-dropin',
-                paypal: {
-                    flow: 'vault'
-                }
+                
+                
                 }, function (createErr, instance) {
                 if (createErr) {
                     console.log('Create Error', createErr);

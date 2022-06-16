@@ -232,6 +232,12 @@
     </div>
   </div>
 </div>
+   <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script>
+    $(document).ready(function() {
+      $('#mybutton').hide().delay(2000).fadeIn(1200);
+  });
+    </script>
 </html>
 
 
