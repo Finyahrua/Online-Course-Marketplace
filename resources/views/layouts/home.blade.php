@@ -11,6 +11,7 @@
   <link rel="shortcut icon" type="image/png" href="img/favicon.png" >
   <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,600,700&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
+  <link href="https://vjs.zencdn.net/7.19.2/video-js.css" rel="stylesheet" />
   <script src="{{ asset('js/uikit.js') }}"></script>
 </head>
 
@@ -232,6 +233,7 @@
     </div>
   </div>
 </div>
+  <script src="https://vjs.zencdn.net/7.19.2/video.min.js"></script>
    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script>
     $(document).ready(function() {

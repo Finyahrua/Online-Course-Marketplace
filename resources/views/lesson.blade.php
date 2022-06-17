@@ -12,7 +12,7 @@
 @endsection --}}
 
 @section('main')
-<div class="uk-section">
+<div class="uk-section" style="margin-top: -50px">
   <div class="uk-container">
     <div class="uk-grid-large" data-uk-grid>
       <div class="uk-width-expand@m">
@@ -20,12 +20,35 @@
             <div style="display:flex; flex-direction:row;justify-content:space-between;">
                 <div style="width: 55%">
                     <h3>{{ $lesson->title }}</h3>
-                    <img src="{{ asset('uploads/thumb/'.$lesson->lesson_image)  }}" alt="" style="width: 120px">
+                    {{-- below commented code shows the lesson image --}}
+                    {{-- <img src="{{ asset('uploads/thumb/'.$lesson->lesson_image)  }}" alt="" style="width: 120px"> --}}
                     
+                    
+                <video id="my-video"  class="video-js"
+                controls
+                preload="auto"
+                width="650"
+                height="364"
+                poster="{{ asset('uploads/thumb/'.$lesson->lesson_image)  }}"
+                data-setup="{}"
+                
+                
+            >
+                <source src="{{ asset('uploads/'.$lesson->lesson_video)  }}" type="video/mp4" />
+                
+                <p class="vjs-no-js">
+                To view this video please enable JavaScript, and consider upgrading to a
+                web browser that
+                <a href="https://videojs.com/html5-video-support/" target="_blank"
+                    >supports HTML5 video</a
+                >
+                </p>
+            </video>
                    
                     
                     @if ($purchased_course || $lesson->free_lesson == 1)
-                        {!! $lesson->full_text !!}
+                        <p>{!! $lesson->full_text !!}</p>
+                        
             
                         @if ($test_exists)
                             <hr />

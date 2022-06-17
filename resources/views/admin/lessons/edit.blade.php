@@ -67,6 +67,20 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
+                    {!! Form::label('lesson_video', 'Lesson video', ['class' => 'control-label']) !!}
+                    {!! Form::file('lesson_video', ['class' => 'form-control', 'style' => 'margin-top: 4px;']) !!}
+                    {!! Form::hidden('lesson_video_max_size', 12) !!}
+                    
+                    <p class="help-block"></p>
+                    @if($errors->has('lesson_image'))
+                        <p class="help-block">
+                            {{ $errors->first('lesson_video') }}
+                        </p>
+                    @endif
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 form-group">
                     {!! Form::label('short_text', 'Short text', ['class' => 'control-label']) !!}
                     {!! Form::textarea('short_text', old('short_text'), ['class' => 'form-control ', 'placeholder' => '']) !!}
                     <p class="help-block"></p>

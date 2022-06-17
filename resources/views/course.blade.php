@@ -42,12 +42,13 @@
 	</div>
 
 {{-- video --}}
-    <div id="course-video" class="uk-flex-top" data-uk-modal>
+<div id="course-video" class="uk-flex-top" data-uk-modal>
 	<div class="uk-modal-dialog uk-width-auto uk-margin-auto-vertical">
 		<button class="uk-modal-close-outside" type="button" data-uk-close></button>
 		<iframe src="https://player.vimeo.com/video/126241629" width="1000" height="562" data-uk-video></iframe>
 	</div>
 </div>
+
 
 
 <div class="uk-section">

@@ -20,6 +20,7 @@ class Create1500442043LessonsTable extends Migration
                 $table->string('title')->nullable();
                 $table->string('slug')->nullable();
                 $table->string('lesson_image')->nullable();
+                $table->string('lesson_video')->nullable();
                 $table->text('short_text')->nullable();
                 $table->text('full_text')->nullable();
                 $table->integer('position')->nullable()->unsigned();

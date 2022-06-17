@@ -25,7 +25,7 @@ class Lesson extends Model implements HasMedia
 {
     use SoftDeletes, HasMediaTrait;
 
-    protected $fillable = ['title', 'slug', 'lesson_image', 'short_text', 'full_text', 'position', 'downloadable_files', 'free_lesson', 'published', 'course_id'];
+    protected $fillable = ['title', 'slug', 'lesson_image', 'lesson_video','short_text', 'full_text', 'position', 'downloadable_files', 'free_lesson', 'published', 'course_id'];
     
 
     /**
