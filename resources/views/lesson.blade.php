@@ -20,9 +20,10 @@
             <div style="display:flex; flex-direction:row;justify-content:space-between;">
                 <div style="width: 55%">
                     <h3>{{ $lesson->title }}</h3>
+                    <img src="{{ asset('uploads/thumb/'.$lesson->lesson_image)  }}" alt="" style="width: 120px">
                     
                    
-                    <img src="{{ $lesson->lesson_image }}" alt="img">
+                    
                     @if ($purchased_course || $lesson->free_lesson == 1)
                         {!! $lesson->full_text !!}
             

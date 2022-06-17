@@ -40,7 +40,8 @@
             <div>
                 <div class="uk-card uk-card-small uk-card-default uk-card-hover uk-border-rounded-large uk-overflow-hidden">
                 <div class="uk-card-media-top uk-inline uk-light">
-                    <img src="https://source.unsplash.com/gMsnXqILjp4/640x380" alt="Course Title">
+                    {{-- <img src="https://source.unsplash.com/gMsnXqILjp4/640x380" alt="Course Title"> --}}
+                    <img src="{{ asset('uploads/thumb/'.$course->course_image)  }}" alt="" >
                     <div class="uk-position-cover uk-overlay-xlight"></div>
                     {{-- <div class="uk-position-small uk-position-top-left">
                     <span class="uk-label uk-text-bold uk-text-price">Tsh {{ $course->price }}/=</span>
@@ -93,7 +94,7 @@
       <div>
         <div class="uk-card uk-card-small uk-card-default uk-card-hover uk-border-rounded-large uk-overflow-hidden">
           <div class="uk-card-media-top uk-inline uk-light">
-            <img src="https://source.unsplash.com/gMsnXqILjp4/640x380" alt="Course Title">
+            <img src="{{ asset('uploads/thumb/'.$course->course_image)  }}" alt="" >
             <div class="uk-position-cover uk-overlay-xlight"></div>
             <div class="uk-position-small uk-position-top-left">
               <span class="uk-label uk-text-bold uk-text-price">Tsh {{ $course->price }}/=</span>
