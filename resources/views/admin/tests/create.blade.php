@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <h3 class="page-title">@lang('global.tests.title')</h3>
+    {{-- <h3 class="page-title">@lang('global.tests.title')</h3> --}}
+    <h3 class="page-title">Quiz</h3>
     {!! Form::open(['method' => 'POST', 'route' => ['admin.tests.store']]) !!}
 
     <div class="panel panel-default">
@@ -22,7 +23,7 @@
                     @endif
                 </div>
             </div>
-            <div class="row">
+            {{-- <div class="row">
                 <div class="col-xs-12 form-group">
                     {!! Form::label('lesson_id', 'Lesson', ['class' => 'control-label']) !!}
                     {!! Form::select('lesson_id', $lessons, old('lesson_id'), ['class' => 'form-control select2']) !!}
@@ -33,7 +34,7 @@
                         </p>
                     @endif
                 </div>
-            </div>
+            </div> --}}
             <div class="row">
                 <div class="col-xs-12 form-group">
                     {!! Form::label('title', 'Title', ['class' => 'control-label']) !!}

@@ -13,27 +13,29 @@
 							<a class="uk-text-demi-bold hvr-back" href="/"><span class="uk-margin-small-right" 
 								data-uk-icon="icon: arrow-left; ratio: 1.4"></span>Back</a>
 							<h1 class="uk-heading-small uk-letter-spacing-medium">{{ $course->title }}</h1>
-							<p class="uk-margin-small-bottom">Design Web Sites and Mobile Apps that Your Users Love and Return to Again and Again with UX Expert Tom Solender.</p>
+							<p class="uk-margin-small-bottom">{{ $course->description}}</p>
 							<div class="uk-rating">
-								<span class="uk-rating-filled" data-uk-icon="icon: star"></span>
-								<span class="uk-rating-filled" data-uk-icon="icon: star"></span>
-								<span class="uk-rating-filled" data-uk-icon="icon: star"></span>
-								<span class="uk-rating-filled" data-uk-icon="icon: star"></span>
-								<span data-uk-icon="icon: star"></span>
-								<span class="uk-margin-small-left">4.0</span>
-								<span>(6,650)</span>
-								<span class="uk-margin-left">65,306 students enrolled</span>
+							@for ($star = 1; $star <= 5; $star++)
+                    @if ($course->rating >= $star)
+                            <span class="uk-rating-filled" data-uk-icon="icon: star; "></span>
+                    @else
+                           <span data-uk-icon="icon: star;"></span>
+                    @endif
+              @endfor 
+								<span class="uk-margin-small-left">{{ $course->rating }}</span>
+								<span>({{ $course->students()->count() }})</span>
+								<span class="uk-margin-left"><span>{{ $course->students()->count() }}</span> students enrolled</span>
 							</div>
-							<p class="uk-margin-xsmall-top">Created by: ....</p>
+							{{-- <p class="uk-margin-xsmall-top">Created by: ....</p> --}}
 						</div>
 					</div>
 					<div class="uk-width-1-5@m"></div>
 					<div class="uk-width-1-3@m uk-flex uk-flex-middle">
 						<div class="uk-inline uk-light uk-border-rounded-large uk-box-shadow-small uk-overflow-hidden">
-							<img src="https://source.unsplash.com/1m2LQEonm2A/640x400" alt="Video">
-							<div class="uk-position-center">
+							<img src="{{ asset('uploads/thumb/'.$course->course_image)  }}" alt="course-image">
+							{{-- <div class="uk-position-center">
 								<a href="#course-video" class="uk-icon-link" data-uk-icon="icon: play-circle; ratio: 3" data-uk-toggle></a>
-							</div>
+							</div> --}}
 						</div>
 					</div>
 				</div>
@@ -42,12 +44,13 @@
 	</div>
 
 {{-- video --}}
-<div id="course-video" class="uk-flex-top" data-uk-modal>
+{{-- <div id="course-video" class="uk-flex-top" data-uk-modal>
 	<div class="uk-modal-dialog uk-width-auto uk-margin-auto-vertical">
 		<button class="uk-modal-close-outside" type="button" data-uk-close></button>
-		<iframe src="https://player.vimeo.com/video/126241629" width="1000" height="562" data-uk-video></iframe>
+		{{-- <iframe src="https://player.vimeo.com/video/126241629" width="1000" height="562" data-uk-video></iframe> --}}
+    {{-- <img src="{{ asset('uploads/thumb/'.$course->course_image)  }}" alt="" style="width: 1000;height:562" >
 	</div>
-</div>
+</div> --}} 
 
 
 
@@ -56,8 +59,6 @@
     <div class="uk-grid-large" data-uk-grid>
       <div class="uk-width-expand@m">
         <div class="uk-article">
-          <h3>Description</h3>
-          <p>{{ $course->description }}</p>
           <h3>Course content</h3>
           <ul class="uk-margin-top" data-uk-accordion="multiple: true">
             <li class="uk-open">
@@ -203,11 +204,14 @@
           </ul>
 
           <h3 id="contact">How do I contact you with my questions?</h3>
-          <p>Activity that and the scarfs, for bit of text, never just 
-            as our have they of begin to cannot in of ran middle at behind seal that their accustomed. For 
-            devotion their to though one small sight escape, little. In so her has I solider, touched 
-            the we the past, time, he posterity.</p>          
-        </div>
+          <p><address>
+          Send an email to <a href="mailto:finaddy@gmail.com">Admin</a>.<br>
+          Visit us at: University of Dar es Salaam, CoICT
+          Box 4242, Dar es Salaam<br>
+          Tanzania
+          </address>
+          </p>          
+          </div>
       </div>
       
       <div class="uk-width-1-3@m">
@@ -249,8 +253,8 @@
             <ul class="uk-list uk-margin-small-top">
               {{-- <li><span class="uk-margin-small-right" data-uk-icon="clock"></span>10 hours on-demand video</li> --}}
               <li><span class="uk-margin-small-right" data-uk-icon="unlock"></span>Full lifetime access</li>
-              <li><span class="uk-margin-small-right" data-uk-icon="tablet"></span>Access on mobile</li>
-              <li><span class="uk-margin-small-right" data-uk-icon="file-text"></span>Certificate of completion</li>
+              {{-- <li><span class="uk-margin-small-right" data-uk-icon="tablet"></span>Access on mobile</li>
+              <li><span class="uk-margin-small-right" data-uk-icon="file-text"></span>Certificate of completion</li> --}}
             </ul>
             <p class="uk-text-center"><a href="admin@mail.com" class="uk-link-muted" data-uk-scroll="offset: 100">Have a question, contact us</a></p>
           </div>			

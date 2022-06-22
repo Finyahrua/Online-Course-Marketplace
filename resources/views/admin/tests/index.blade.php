@@ -32,7 +32,7 @@
                         @endcan
 
                         <th>@lang('global.tests.fields.course')</th>
-                        <th>@lang('global.tests.fields.lesson')</th>
+                        {{-- <th>@lang('global.tests.fields.lesson')</th> --}}
                         <th>@lang('global.tests.fields.title')</th>
                         <th>@lang('global.tests.fields.description')</th>
                         <th>@lang('global.tests.fields.questions')</th>
@@ -54,7 +54,7 @@
                                 @endcan
 
                                 <td>{{ $test->course->title or '' }}</td>
-                                <td>{{ $test->lesson->title or '' }}</td>
+                                {{-- <td>{{ $test->lesson->title or '' }}</td> --}}
                                 <td>{{ $test->title }}</td>
                                 <td>{!! $test->description !!}</td>
                                 <td>{{ $test->questions->count() }}</td>

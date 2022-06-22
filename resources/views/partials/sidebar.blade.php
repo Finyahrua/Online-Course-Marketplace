@@ -5,12 +5,12 @@
     <section class="sidebar">
         <ul class="sidebar-menu">
 
-            <li class="{{ $request->segment(1) == 'home' ? 'active' : '' }}">
-                <a href="{{ url('/') }}">
+            {{-- <li class="{{ $request->segment(1) == 'home' ? 'active' : '' }}">
+                <a href="{{ url('/admin/courses') }}">
                     <i class="fa fa-wrench"></i>
                     <span class="title">@lang('global.app_dashboard')</span>
                 </a>
-            </li>
+            </li> --}}
 
             
             @can('user_management_access')
@@ -84,20 +84,21 @@
             </li>
             @endcan
             
-            @can('questions_option_access')
+            {{-- @can('questions_option_access')
             <li class="{{ $request->segment(2) == 'questions_options' ? 'active' : '' }}">
                 <a href="{{ route('admin.questions_options.index') }}">
                     <i class="fa fa-gears"></i>
                     <span class="title">@lang('global.questions-options.title')</span>
                 </a>
             </li>
-            @endcan
+            @endcan --}}
             
             @can('test_access')
             <li class="{{ $request->segment(2) == 'tests' ? 'active' : '' }}">
                 <a href="{{ route('admin.tests.index') }}">
                     <i class="fa fa-gears"></i>
-                    <span class="title">@lang('global.tests.title')</span>
+                    {{-- <span class="title">@lang('global.tests.title')</span> --}}
+                    <span class="title">Quiz</span>
                 </a>
             </li>
             @endcan

@@ -19,34 +19,24 @@
         <div class="uk-article">
             <div style="display:flex; flex-direction:row;justify-content:space-between;">
                 <div style="width: 55%">
+                @if ($purchased_course || $lesson->free_lesson == 1)
                     <h3>{{ $lesson->title }}</h3>
                     {{-- below commented code shows the lesson image --}}
                     {{-- <img src="{{ asset('uploads/thumb/'.$lesson->lesson_image)  }}" alt="" style="width: 120px"> --}}
                     
                     
-                <video id="my-video"  class="video-js"
-                controls
-                preload="auto"
-                width="650"
-                height="364"
-                poster="{{ asset('uploads/thumb/'.$lesson->lesson_image)  }}"
-                data-setup="{}"
-                
-                
-            >
-                <source src="{{ asset('uploads/'.$lesson->lesson_video)  }}" type="video/mp4" />
-                
-                <p class="vjs-no-js">
-                To view this video please enable JavaScript, and consider upgrading to a
-                web browser that
-                <a href="https://videojs.com/html5-video-support/" target="_blank"
-                    >supports HTML5 video</a
-                >
-                </p>
-            </video>
+                        <video id="my-video"  class="video-js"
+                        controls
+                        preload="auto"
+                        width="560"
+                        height="364"
+                        poster="{{ asset('uploads/thumb/'.$lesson->lesson_image)  }}"
+                        data-setup="{}" style="margin-right: 50px">
+                        <source src="{{ asset('uploads/'.$lesson->lesson_video)  }}" type="video/mp4" />
+                    </video>
                    
                     
-                    @if ($purchased_course || $lesson->free_lesson == 1)
+                    
                         <p>{!! $lesson->full_text !!}</p>
                         
             
@@ -78,15 +68,15 @@
                     <div style="display:flex; flex-direction:row;justify-content:space-between; margin-top:10px">
 
                         @if ($previous_lesson)
-                            <p><a href="{{ route('lessons.show', [$previous_lesson->course_id, $previous_lesson->slug]) }}"><< {{ $previous_lesson->title }}</a></p>
+                            <p><a href="{{ route('lessons.show', [$previous_lesson->course_id, $previous_lesson->slug]) }}"><< Previous Lesson</a></p>
                         @endif
                         @if ($next_lesson)
-                            <p><a href="{{ route('lessons.show', [$next_lesson->course_id, $next_lesson->slug]) }}">{{ $next_lesson->title }} >></a></p>
+                            <p><a href="{{ route('lessons.show', [$next_lesson->course_id, $next_lesson->slug]) }}">Next Lesson >></a></p>
                         @endif
                     </div>
                 </div>
                 <div>
-                    <div class="uk-accordion-content">
+                    <div class="uk-accordion-content" style="width: 400px">
                         <table class="uk-table uk-table-justify uk-table-middle uk-table-divider">
                             <tbody>
                                 @foreach ($lesson->course->publishedLessons as $list_lesson)

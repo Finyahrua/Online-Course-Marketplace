@@ -32,7 +32,7 @@
                         @endcan
 
                         <th>@lang('global.questions.fields.question')</th>
-                        <th>@lang('global.questions.fields.question-image')</th>
+                        {{-- <th>@lang('global.questions.fields.question-image')</th> --}}
                         <th>@lang('global.questions.fields.score')</th>
                         @if( request('show_deleted') == 1 )
                         <th>&nbsp;</th>
@@ -51,7 +51,7 @@
                                 @endcan
 
                                 <td>{!! $question->question !!}</td>
-                                <td>@if($question->question_image)<a href="{{ asset('uploads/' . $question->question_image) }}" target="_blank"><img src="{{ asset('uploads/thumb/' . $question->question_image) }}"/></a>@endif</td>
+                                {{-- <td>@if($question->question_image)<a href="{{ asset('uploads/' . $question->question_image) }}" target="_blank"><img src="{{ asset('uploads/thumb/' . $question->question_image) }}"/></a>@endif</td> --}}
                                 <td>{{ $question->score }}</td>
                                 @if( request('show_deleted') == 1 )
                                 <td>

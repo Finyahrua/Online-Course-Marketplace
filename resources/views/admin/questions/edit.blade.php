@@ -23,7 +23,7 @@
                     @endif
                 </div>
             </div>
-            <div class="row">
+            {{-- <div class="row">
                 <div class="col-xs-12 form-group">
                     @if ($question->question_image)
                         <a href="{{ asset('uploads/'.$question->question_image) }}" target="_blank"><img src="{{ asset('uploads/thumb/'.$question->question_image) }}"></a>
@@ -40,7 +40,7 @@
                         </p>
                     @endif
                 </div>
-            </div>
+            </div> --}}
             <div class="row">
                 <div class="col-xs-12 form-group">
                     {!! Form::label('score', 'Score*', ['class' => 'control-label']) !!}

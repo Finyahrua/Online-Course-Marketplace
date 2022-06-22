@@ -73,7 +73,7 @@
             </div>
             <div class="uk-width-1-2@m uk-padding-large uk-flex uk-flex-middle uk-flex-center uk-light
                 uk-background-cover uk-background-norepeat uk-background-blend-overlay uk-overlay-blend" 
-                style="background-image: url(https://source.unsplash.com/nF8xhLMmg0c/680x1000);" data-uk-height-viewport>
+                style="background-image: url(https://source.);" data-uk-height-viewport>
                 <div>
             <div class="uk-text-center">
                 <h2 class="uk-h1 uk-letter-spacing-small">Welcome Back</h2>

@@ -28,27 +28,8 @@
 	        <div class="uk-navbar-right">
 	          <ul class="uk-navbar-nav uk-visible@m" data-uk-scrollspy-nav="closest: li; scroll: true; offset: 80">
 	            <li class="uk-active"><a href="/">Courses</a></li>
-	            <li ><a href="/">Events</a></li>
+	            {{-- <li ><a href="/">Events</a></li> --}}
 	          </ul>
-            {{-- @if (Auth::check())
-                        <div >
-                            Logged in as {{ Auth::user()->name }}
-                            <form action="{{ route('auth.logout') }}" method="post">
-                                {{ csrf_field() }}
-                                <input type="submit" value="Logout" class="btn btn-info">
-                            </form>
-                        </div>
-                    @else --}}
-                        {{-- <form action="{{ route('auth.login') }}" method="post">
-                            {{ csrf_field() }}
-                            <input type="email" name="email" placeholder="Email" />
-                            <input type="password" name="password" placeholder="Password" />
-                            <input type="submit" value="Login" class=" uk-active">
-                        </form> --}}
-                        {{-- <div><a class="uk-button uk-button-primary-light" href="{{ route('auth.login') }}">Sign In</a></div>
-	          </div>   
-                    @endif
-	          </div> --}}
             <div style="margin-right:60px"></div>
 
             @if (Auth::check())
