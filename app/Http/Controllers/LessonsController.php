@@ -16,9 +16,9 @@ class LessonsController extends Controller
     public function show($course_id, $lesson_slug)
     {
         $lesson = Lesson::where('slug', $lesson_slug)->where('course_id', $course_id)->firstOrFail();
+        
 
-        if (\Auth::check())
-        {
+        if (\Auth::check()) {
             if ($lesson->students()->where('id', \Auth::id())->count() == 0) {
                 $lesson->students()->attach(\Auth::id());
             }
@@ -46,8 +46,14 @@ class LessonsController extends Controller
             $test_exists = TRUE;
         }
 
-        return view('lesson', compact('lesson', 'previous_lesson', 'next_lesson', 'test_result',
-            'purchased_course', 'test_exists'));
+        return view('lesson', compact(
+            'lesson',
+            'previous_lesson',
+            'next_lesson',
+            'test_result',
+            'purchased_course',
+            'test_exists'
+        ));
     }
 
     public function test($lesson_slug, Request $request)
@@ -83,18 +89,15 @@ class LessonsController extends Controller
 
         return redirect()->route('lessons.show', [$lesson->course_id, $lesson_slug])->with('message', 'Test score: ' . $test_score);
     }
-    // public function certificate($course_slug){
-    //     $course = Course::where('slug', $course_slug);
-    //     return view("certificate",compact('course'));
-    // }
+
     public function certificate($course_slug)
     {
         $course = Course::where('slug', $course_slug)->with('publishedLessons')->firstOrFail();
-        $name= \Auth::user();
+        $name = \Auth::user();
 
-        
-       
 
-        return view('certificate', compact('course','name'));
+
+
+        return view('certificate', compact('course', 'name'));
     }
 }

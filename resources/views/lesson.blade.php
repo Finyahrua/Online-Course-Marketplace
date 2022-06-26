@@ -41,28 +41,7 @@
                         
                        
                         
-                        @if ($test_exists)
-                            <hr />
-                            <h3>Test: {{ $lesson->test->title }}</h3>
-                            @if (!is_null($test_result))
-                                <div class="alert alert-info">Your test score: {{ $test_result->test_result }}</div>
-                                 <a href="{{ route('certificate',[$lesson->course->slug ]) }}" class="uk-button uk-button-primary-preserve uk-button-large uk-width-1-1">Get Certificate</a>
-                            @else
-                            <form action="{{ route('lessons.test', [$lesson->slug]) }}" method="post">
-                                {{ csrf_field() }}
-                                @foreach ($lesson->test->questions as $question)
-                                    <b>{{ $loop->iteration }}. {{ $question->question }}</b>
-                                    <br />
-                                    @foreach ($question->options as $option)
-                                        <input type="radio" name="questions[{{ $question->id }}]" value="{{ $option->id }}" /> {{ $option->option_text }}<br />
-                                    @endforeach
-                                    <br />
-                                @endforeach
-                                <input type="submit" value=" Submit results " />
-                            </form>
-                            @endif
-                            <hr />
-                        @endif
+                       
                     @else
                         Please <a href="{{ route('courses.show', [$lesson->course->slug]) }}">go back</a> and buy the course.
                     @endif
@@ -76,11 +55,13 @@
                             <p><a href="{{ route('lessons.show', [$next_lesson->course_id, $next_lesson->slug]) }}">Next Lesson >></a></p>
                         @endif
                     </div>
+                    
                 </div>
                 <div>
                     <div class="uk-accordion-content" style="width: 400px">
                         <table class="uk-table uk-table-justify uk-table-middle uk-table-divider">
                             <tbody>
+                              
                                 @foreach ($lesson->course->publishedLessons as $list_lesson)
                                     <tr class="uk-text-primary">
                                         <td class="uk-table-expand"><span class="uk-margin-small-right" data-uk-icon="play-circle"></span>
@@ -90,17 +71,14 @@
                                         </td>
                                     </tr>
                                 @endforeach
-                                
-                        @if ($test_exists)
-                            <hr />
+                                <tr>
+                                    <td>@if ($test_exists)
+                          
                             <h3>Test: {{ $lesson->test->title }}</h3>
                             @if (!is_null($test_result))
-                                <div class="alert alert-info">Your test score: {{ $test_result->test_result }}</div>
-                                <td>
-                                    <tr>
-                                        <a href="{{ route('certificate',[$lesson->course->slug ]) }}" class="uk-button uk-button-primary-preserve uk-button-large uk-width-1-1">Get Certificate</a>
-                                    </tr>
-                                 </td>
+                                <div class="alert alert-info">Your test score: {{ $test_result->test_result }}
+                                </div>
+                                   <a href="{{ route('certificate',[$lesson->course->slug ]) }}" class="uk-button uk-button-primary-preserve uk-button-large uk-width-1-1">Get Certificate</a>
                             @else
                             <form action="{{ route('lessons.test', [$lesson->slug]) }}" method="post">
                                 {{ csrf_field() }}
@@ -114,68 +92,21 @@
                                 @endforeach
                                 <input type="submit" value=" Submit results " />
                             </form>
+                            
+                            
                             @endif
-                            <hr />
+                            
+                            
                         @endif
+                    </td>
+
+                </tr>
+                        
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
-            
-
-   
-            
-                {{-- <div class="uk-accordion-content">
-                    <table class="uk-table uk-table-justify uk-table-middle uk-table-divider">
-                        <tbody>
-                            @foreach ($lesson->course->publishedLessons as $list_lesson)
-                                <tr class="uk-text-primary">
-                                    <td class="uk-table-expand"><span class="uk-margin-small-right" data-uk-icon="play-circle"></span>
-
-                                        <a href="{{ route('lessons.show', [$list_lesson->course_id, $list_lesson->slug]) }}" class="uk-text-primary"
-                                            @if ($list_lesson->id == $lesson->id) style="font-weight: bold" @endif>{{ $loop->iteration }}. {{ $list_lesson->title }}</a>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div> --}}
-
-            {{-- @if ($purchased_course || $lesson->free_lesson == 1)
-                {!! $lesson->full_text !!}
-            
-                @if ($test_exists)
-                    <hr />
-                    <h3>Test: {{ $lesson->test->title }}</h3>
-                    @if (!is_null($test_result))
-                        <div class="alert alert-info">Your test score: {{ $test_result->test_result }}</div>
-                    @else
-                    <form action="{{ route('lessons.test', [$lesson->slug]) }}" method="post">
-                        {{ csrf_field() }}
-                        @foreach ($lesson->test->questions as $question)
-                            <b>{{ $loop->iteration }}. {{ $question->question }}</b>
-                            <br />
-                            @foreach ($question->options as $option)
-                                <input type="radio" name="questions[{{ $question->id }}]" value="{{ $option->id }}" /> {{ $option->option_text }}<br />
-                            @endforeach
-                            <br />
-                        @endforeach
-                        <input type="submit" value=" Submit results " />
-                    </form>
-                    @endif
-                    <hr />
-                @endif
-            @else
-                Please <a href="{{ route('courses.show', [$lesson->course->slug]) }}">go back</a> and buy the course.
-            @endif --}}
-
-            {{-- @if ($previous_lesson)
-                <p><a href="{{ route('lessons.show', [$previous_lesson->course_id, $previous_lesson->slug]) }}"><< {{ $previous_lesson->title }}</a></p>
-            @endif
-            @if ($next_lesson)
-                <p><a href="{{ route('lessons.show', [$next_lesson->course_id, $next_lesson->slug]) }}">{{ $next_lesson->title }} >></a></p>
-            @endif --}}
         </div>
       </div>
     </div>

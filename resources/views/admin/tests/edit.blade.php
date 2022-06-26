@@ -59,7 +59,18 @@
                     @endif
                 </div>
             </div>
-
+          <div class="row">
+                <div class="col-xs-12 form-group">
+                    {!! Form::label('questions', 'Questions', ['class' => 'control-label']) !!}
+                    {!! Form::select('questions[]', $questions, old('questions'), ['class' => 'form-control select2', 'multiple' => 'multiple']) !!}
+                    <p class="help-block"></p>
+                    @if($errors->has('questions'))
+                        <p class="help-block">
+                            {{ $errors->first('questions') }}
+                        </p>
+                    @endif
+                </div>
+            </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
                     {!! Form::label('published', 'Published', ['class' => 'control-label']) !!}

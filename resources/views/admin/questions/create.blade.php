@@ -49,7 +49,7 @@
                     @endif
                 </div>
             </div>
-            <div class="row">
+            {{-- <div class="row">
                 <div class="col-xs-12 form-group">
                     {!! Form::label('tests', 'Tests', ['class' => 'control-label']) !!}
                     {!! Form::select('tests[]', $tests, old('tests'), ['class' => 'form-control select2', 'multiple' => 'multiple']) !!}
@@ -60,8 +60,19 @@
                         </p>
                     @endif
                 </div>
-            </div>
-
+            </div> --}}
+            {{-- <div class="row">
+                <div class="col-xs-12 form-group">
+                    {!! Form::label('courses', 'Courses', ['class' => 'control-label']) !!}
+                    {!! Form::select('courses[]', $courses, old('courses'), ['class' => 'form-control select2', 'multiple' => 'multiple']) !!}
+                    <p class="help-block"></p>
+                    @if($errors->has('tests'))
+                        <p class="help-block">
+                            {{ $errors->first('courses') }}
+                        </p>
+                    @endif
+                </div>
+            </div> --}}
         </div>
     </div>
 

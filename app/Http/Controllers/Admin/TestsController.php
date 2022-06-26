@@ -49,9 +49,9 @@ class TestsController extends Controller
         $courses_ids = $courses->pluck('id');
         $courses = $courses->pluck('title', 'id')->prepend('Please select', '');
         $lessons = \App\Lesson::whereIn('course_id', $courses_ids)->get()->pluck('title', 'id')->prepend('Please select', '');
-        
+        $questions=\App\Question::get()->pluck('question','id');
 
-        return view('admin.tests.create', compact('courses', 'lessons'));
+        return view('admin.tests.create', compact('courses', 'lessons','questions'));
     }
 
     /**
@@ -66,6 +66,7 @@ class TestsController extends Controller
             return abort(401);
         }
         $test = Test::create($request->all());
+        $test->questions()->sync(array_filter((array)$request->input('questions')));
 
         return redirect()->route('admin.tests.index');
     }
@@ -85,11 +86,13 @@ class TestsController extends Controller
         $courses = \App\Course::ofTeacher()->get();
         $courses_ids = $courses->pluck('id');
         $courses = $courses->pluck('title', 'id')->prepend('Please select', '');
+        $questions = \App\Question::get()->pluck('question', 'id');
         $lessons = \App\Lesson::whereIn('course_id', $courses_ids)->get()->pluck('title', 'id')->prepend('Please select', '');
+
 
         $test = Test::findOrFail($id);
 
-        return view('admin.tests.edit', compact('test', 'courses', 'lessons'));
+        return view('admin.tests.edit', compact('test', 'courses','questions','lessons' ));
     }
 
     /**
@@ -106,7 +109,7 @@ class TestsController extends Controller
         }
         $test = Test::findOrFail($id);
         $test->update($request->all());
-
+        $test->questions()->sync(array_filter((array)$request->input('questions')));
         return redirect()->route('admin.tests.index');
     }
 
