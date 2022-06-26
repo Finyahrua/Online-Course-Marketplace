@@ -245,8 +245,7 @@
             @else
               <a href="{{ route('auth.register') }}?redirect_url={{ route('courses.show', [$course->slug]) }}" class="uk-button uk-button-primary-preserve uk-button-large uk-width-1-1">Buy Now</a>
             @endif
-            {{-- <a href="{{ route('auth.register') }}?redirect_url={{ route('courses.show', [$course->slug]) }}" class="uk-button uk-button-primary-preserve uk-button-large uk-width-1-1">Buy Now</a> --}}
-            {{-- <p class="uk-text-center uk-text-muted uk-text-small">30-Day Money-Back Guarantee</p> --}}
+           
 
 
             <p class="uk-margin-remove">This course includes:</p>
@@ -263,101 +262,4 @@
     </div>
   </div>
 </div>
-
-{{-- 
-    <h2>{{ $course->title }}</h2>
-
-    @if ($purchased_course)
-        Rating: {{ $course->rating }} / 5
-        <br />
-        <b>Rate the course:</b>
-        <br />
-        <form action="{{ route('courses.rating', [$course->id]) }}" method="post">
-            {{ csrf_field() }}
-            <select name="rating">
-                <option value="1">1 - Awful</option>
-                <option value="2">2 - Not too good</option>
-                <option value="3">3 - Average</option>
-                <option value="4" selected>4 - Quite good</option>
-                <option value="5">5 - Awesome!</option>
-            </select>
-            <input type="submit" value="Rate" />
-        </form>
-        <hr />
-    @endif
-
-    <p>{{ $course->description }}</p>
-
-    <p>
-        @if (\Auth::check())
-            @if ($course->students()->where('user_id', \Auth::id())->count() == 0)
-                <form method="post" id="payment-form" action="{{ route('courses.payment') }}">
-                  {{ csrf_field() }}
-                  <input type="hidden" name="course_id" value="{{ $course->id }}" />
-                  <section>
-                      <label for="amount">
-                          <span class="input-label">Amount</span>
-                          <div class="input-wrapper amount-wrapper">
-                              <input id="amount" name="amount" type="tel" min="1" placeholder="Amount" value="{{ $course->price }}">
-                          </div>
-                      </label>
-
-                      <div class="bt-drop-in-wrapper">
-                          <div id="bt-dropin"></div>
-                      </div>
-                  </section>
-
-                  <input id="nonce" name="payment_method_nonce" type="hidden" />
-                  <button class="button" type="submit"><span>Pay Now</span></button>
-              </form>
-
-              <script src="https://js.braintreegateway.com/web/dropin/1.33.2/js/dropin.min.js"></script>
-                  <script>
-                      var form = document.querySelector('#payment-form');
-                      
-
-                      braintree.dropin.create({
-                        authorization: "{{ Braintree\ClientToken::generate() }}",
-                        selector: '#bt-dropin',
-                        paypal: {
-                          flow: 'vault'
-                        }
-                      }, function (createErr, instance) {
-                        if (createErr) {
-                          console.log('Create Error', createErr);
-                          return;
-                        }
-                        form.addEventListener('submit', function (event) {
-                          event.preventDefault();
-
-                          instance.requestPaymentMethod(function (err, payload) {
-                            if (err) {
-                              console.log('Request Payment Method Error', err);
-                              return;
-                            }
-
-                            // Add the nonce to the form and submit
-                            document.querySelector('#nonce').value = payload.nonce;
-                            form.submit();
-                          });
-                        });
-                      });
-                  </script>
-                
-            </form>
-            @endif
-        @else
-            <a href="{{ route('auth.register') }}?redirect_url={{ route('courses.show', [$course->slug]) }}"
-               class="btn btn-primary">Buy course (${{ $course->price }})</a>
-        @endif
-    </p>
-
-
-    @foreach ($course->publishedLessons as $lesson)
-        @if ($lesson->free_lesson)(FREE!)@endif {{ $loop->iteration }}.
-        <a href="{{ route('lessons.show', [$lesson->course_id, $lesson->slug]) }}">{{ $lesson->title }}</a>
-        <p>{{ $lesson->short_text }}</p>
-        <hr />
-    @endforeach --}}
-
 @endsection

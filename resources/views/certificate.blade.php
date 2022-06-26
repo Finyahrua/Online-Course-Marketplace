@@ -31,14 +31,14 @@
             font-size: 32px;
             font-style: italic;
             margin: 20px auto;
-            width: 400px;">Joe Nathan</div>
+            width: 400px;">{{ $name->name }}</div>
 
           <div style="margin: 20px;
             font-family: 'Pinyon Script', cursive;">for completing the training course entitled</div>
           <div style=" border-bottom: 1px solid black;
             font-size: 25px;
             margin: 20px auto;
-            width: 350px">Introduction to Chemistry</div>
+            width: 350px">{{ $course->title }}</div>
         </div>   
         <div style="margin-left: 50px;font-family: Georgia, serif;font-style: italic; align-items:center;justify-content:center" >
           <input id="btn_convert" type="button" value="Save as Image"  class="uk-button uk-button-primary-preserve uk-button-large uk-width-1-1" />

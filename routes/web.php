@@ -15,7 +15,7 @@ Route::post('lesson/{slug}/test', ['uses' => 'LessonsController@test', 'as' => '
 Route::get('payment/{slug}', 'PaymentsController@show')->name('payment.make');
 Route::post('/checkout', 'PaymentsController@payment')->name('payment.checkout');
 //certificate route
-Route::get('/certificate', 'HomeController@cer');
+Route::get('/certificate/{slug}', ['uses' => 'LessonsController@certificate', 'as' => 'certificate']);
 
 // Authentication Routes...
 $this->get('login', 'Auth\LoginController@showLoginForm')->name('auth.login');

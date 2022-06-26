@@ -39,12 +39,14 @@
                     
                         <p>{!! $lesson->full_text !!}</p>
                         
-            
+                       
+                        
                         @if ($test_exists)
                             <hr />
                             <h3>Test: {{ $lesson->test->title }}</h3>
                             @if (!is_null($test_result))
                                 <div class="alert alert-info">Your test score: {{ $test_result->test_result }}</div>
+                                 <a href="{{ route('certificate',[$lesson->course->slug ]) }}" class="uk-button uk-button-primary-preserve uk-button-large uk-width-1-1">Get Certificate</a>
                             @else
                             <form action="{{ route('lessons.test', [$lesson->slug]) }}" method="post">
                                 {{ csrf_field() }}
@@ -88,6 +90,33 @@
                                         </td>
                                     </tr>
                                 @endforeach
+                                
+                        @if ($test_exists)
+                            <hr />
+                            <h3>Test: {{ $lesson->test->title }}</h3>
+                            @if (!is_null($test_result))
+                                <div class="alert alert-info">Your test score: {{ $test_result->test_result }}</div>
+                                <td>
+                                    <tr>
+                                        <a href="{{ route('certificate',[$lesson->course->slug ]) }}" class="uk-button uk-button-primary-preserve uk-button-large uk-width-1-1">Get Certificate</a>
+                                    </tr>
+                                 </td>
+                            @else
+                            <form action="{{ route('lessons.test', [$lesson->slug]) }}" method="post">
+                                {{ csrf_field() }}
+                                @foreach ($lesson->test->questions as $question)
+                                    <b>{{ $loop->iteration }}. {{ $question->question }}</b>
+                                    <br />
+                                    @foreach ($question->options as $option)
+                                        <input type="radio" name="questions[{{ $question->id }}]" value="{{ $option->id }}" /> {{ $option->option_text }}<br />
+                                    @endforeach
+                                    <br />
+                                @endforeach
+                                <input type="submit" value=" Submit results " />
+                            </form>
+                            @endif
+                            <hr />
+                        @endif
                             </tbody>
                         </table>
                     </div>

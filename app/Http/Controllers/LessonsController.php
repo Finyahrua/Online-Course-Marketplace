@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Course;
 use App\Lesson;
 use App\Question;
 use App\QuestionsOption;
 use App\TestsResult;
 use Illuminate\Http\Request;
+use Auth;
 
 class LessonsController extends Controller
 {
@@ -81,5 +83,18 @@ class LessonsController extends Controller
 
         return redirect()->route('lessons.show', [$lesson->course_id, $lesson_slug])->with('message', 'Test score: ' . $test_score);
     }
+    // public function certificate($course_slug){
+    //     $course = Course::where('slug', $course_slug);
+    //     return view("certificate",compact('course'));
+    // }
+    public function certificate($course_slug)
+    {
+        $course = Course::where('slug', $course_slug)->with('publishedLessons')->firstOrFail();
+        $name= \Auth::user();
 
+        
+       
+
+        return view('certificate', compact('course','name'));
+    }
 }
