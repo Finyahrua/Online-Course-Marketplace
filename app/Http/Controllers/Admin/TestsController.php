@@ -50,6 +50,7 @@ class TestsController extends Controller
         $courses = $courses->pluck('title', 'id')->prepend('Please select', '');
         $lessons = \App\Lesson::whereIn('course_id', $courses_ids)->get()->pluck('title', 'id')->prepend('Please select', '');
         $questions=\App\Question::get()->pluck('question','id');
+      
 
         return view('admin.tests.create', compact('courses', 'lessons','questions'));
     }

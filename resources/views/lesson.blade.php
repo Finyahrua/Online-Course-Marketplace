@@ -76,9 +76,11 @@
                           
                             <h3>Test: {{ $lesson->test->title }}</h3>
                             @if (!is_null($test_result))
-                                <div class="alert alert-info">Your test score: {{ $test_result->test_result }}
+                                <div class="alert alert-info">Your test score is: <h3 style="margin-top: 5px">{{ $test_result->test_result }}%</h3>
+
+
                                 </div>
-                                   <a href="{{ route('certificate',[$lesson->course->slug ]) }}" class="uk-button uk-button-primary-preserve uk-button-large uk-width-1-1">Get Certificate</a>
+                                   <a href="{{ route('certificate',[$lesson->course->slug ]) }}" class="uk-button uk-button-primary-preserve uk-button-large uk-width-1-1" style="margin-top: -12px">Get Certificate</a>
                             @else
                             <form action="{{ route('lessons.test', [$lesson->slug]) }}" method="post">
                                 {{ csrf_field() }}
@@ -90,7 +92,7 @@
                                     @endforeach
                                     <br />
                                 @endforeach
-                                <input type="submit" value=" Submit results " />
+                                <input type="submit" value=" Submit results " class="uk-button uk-button-primary-preserve uk-button-large" />
                             </form>
                             
                             

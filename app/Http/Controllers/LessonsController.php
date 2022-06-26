@@ -16,7 +16,7 @@ class LessonsController extends Controller
     public function show($course_id, $lesson_slug)
     {
         $lesson = Lesson::where('slug', $lesson_slug)->where('course_id', $course_id)->firstOrFail();
-        
+
 
         if (\Auth::check()) {
             if ($lesson->students()->where('id', \Auth::id())->count() == 0) {
@@ -61,6 +61,7 @@ class LessonsController extends Controller
         $lesson = Lesson::where('slug', $lesson_slug)->firstOrFail();
         $answers = [];
         $test_score = 0;
+        $totalScore = 0;
         foreach ($request->get('questions') as $question_id => $answer_id) {
             $question = Question::find($question_id);
             $correct = QuestionsOption::where('question_id', $question_id)
@@ -74,20 +75,27 @@ class LessonsController extends Controller
             if ($correct) {
                 $test_score += $question->score;
             }
+            $totalScore += $question->score;
+
+            $test_percentage_score = ($test_score * 100) / $totalScore;
+
             /*
              * Save the answer
              * Check if it is correct and then add points
              * Save all test result and show the points
              */
         }
+
         $test_result = TestsResult::create([
             'test_id' => $lesson->test->id,
             'user_id' => \Auth::id(),
-            'test_result' => $test_score
+            // 'test_result' => $test_score
+            'test_result' => $test_percentage_score
         ]);
         $test_result->answers()->createMany($answers);
 
-        return redirect()->route('lessons.show', [$lesson->course_id, $lesson_slug])->with('message', 'Test score: ' . $test_score);
+        // return redirect()->route('lessons.show', [$lesson->course_id, $lesson_slug])->with('message', 'Test score: ' . $test_score);
+        return redirect()->route('lessons.show', [$lesson->course_id, $lesson_slug])->with('message', 'Test score: ' . $test_percentage_score);
     }
 
     public function certificate($course_slug)
