@@ -1,6 +1,7 @@
 <?php
 
-
+// use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'HomeController@index');
 Route::get('course/{slug}', ['uses' => 'CoursesController@show', 'as' => 'courses.show']);
@@ -13,7 +14,8 @@ Route::post('lesson/{slug}/test', ['uses' => 'LessonsController@test', 'as' => '
 //payment
 Route::get('payment/{slug}', 'PaymentsController@show')->name('payment.make');
 Route::post('/checkout', 'PaymentsController@payment')->name('payment.checkout');
-
+//certificate route
+Route::get('/certificate', 'HomeController@cer');
 
 // Authentication Routes...
 $this->get('login', 'Auth\LoginController@showLoginForm')->name('auth.login');
@@ -27,6 +29,8 @@ $this->post('register', 'Auth\RegisterController@register')->name('auth.register
 // Change Password Routes...
 $this->get('change_password', 'Auth\ChangePasswordController@showChangePasswordForm')->name('auth.change_password');
 $this->patch('change_password', 'Auth\ChangePasswordController@changePassword')->name('auth.change_password');
+
+
 
 // Password Reset Routes...
 $this->get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('auth.password.reset');

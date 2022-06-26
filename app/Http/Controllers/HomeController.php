@@ -25,4 +25,7 @@ class HomeController extends Controller
         $courses = Course::where('published', 1)->orderBy('id', 'desc')->get();
         return view('index', compact('courses', 'purchased_courses'));
     }
+    public function cer(){
+        return view('certificate');
+    }
 }

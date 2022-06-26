@@ -11,6 +11,7 @@
     "php": ">=5.6.4",
     "braintree/braintree_php": "^6.8",
     "doctrine/dbal": "^2.5",
+    "froiden/sql-generator": "dev-master",
     "intervention/image": "^2.3",
     "kingflamez/laravelrave": "^4.2",
     "laravel/framework": "5.4.*",
