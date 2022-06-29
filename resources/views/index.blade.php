@@ -3,7 +3,7 @@
 @section('main')
     @if (!is_null($purchased_courses))
         
-        <div class="uk-container" style="margin-top: -20px">
+        <div class="uk-container" style="margin-top: 5px">
             <div class="uk-grid-small uk-flex uk-flex-middle" data-uk-grid>
             <div class="uk-width-expand@m">
                 <h2>My Courses</h2>
@@ -32,6 +32,10 @@
                     <span class="uk-margin-small-left uk-text-bold">{{ $course->rating }}</span>
                    
                     <span>({{ $course->students()->count() }})</span>
+                    </div>
+                    {{-- display progress on the particular course --}}
+                    <div class="uk-text-muted uk-text uk-rating uk-margin-small-top">
+                      <p>Progress: {{ Auth::user()->lessons()->where('course_id',$course->id)->count() }} of {{ $course->lessons->count() }} lessons</p>
                     </div>
                 </div>
                 <a href="{{ route('courses.show', [$course->slug]) }}" class="uk-position-cover"></a>
