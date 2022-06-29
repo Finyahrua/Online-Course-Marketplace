@@ -19,9 +19,9 @@
  
 </head>
 
-<body class="uk-background-body">
+<body class="" style="background-color: #eee">
 
-<header id="header">
+<header id="header" style="background-color: rgb(214, 224, 197)">
 	<div data-uk-sticky="animation: uk-animation-slide-top; sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; cls-inactive: uk-navbar-transparent ; top: #header" >
 	  <nav class="uk-navbar-container uk-letter-spacing-small uk-text-bold" >
 	    <div class="uk-container" >
@@ -31,7 +31,7 @@
 	        </div>
 	        <div class="uk-navbar-right">
 	          <ul class="uk-navbar-nav uk-visible@m" data-uk-scrollspy-nav="closest: li; scroll: true; offset: 80">
-	            <li class="uk-active"><a href="/">Courses</a></li>
+	            <li class="uk-active"><a href="/" style="font-size: 20px;color:black">Courses</a></li>
 	            {{-- <li ><a href="/">Events</a></li> --}}
 	          </ul>
             <div style="margin-right:60px"></div>
@@ -49,7 +49,7 @@
 	            <div><a class="uk-button uk-button-default" href="{{ route('auth.register') }}">Register</a></div>
 	          </div> 
                <div class="uk-navbar-item">
-	            <div><a class="uk-button uk-button-primary-light" href="{{ route('auth.login') }}">login</a></div>
+	            <div><a class="uk-button uk-button-default" href="{{ route('auth.login') }}">login</a></div>
 	          </div>    
 
             @endif
@@ -127,16 +127,14 @@
 
 <div id="offcanvas" data-uk-offcanvas="flip: true; overlay: true">
   <div class="uk-offcanvas-bar">
-    <a class="uk-logo" href="index-2.html">Sprin</a>
+    <a class="uk-logo" href="/">ocm</a>
     <button class="uk-offcanvas-close" type="button" data-uk-close="ratio: 1.2"></button>
     <ul class="uk-nav uk-nav-primary uk-nav-offcanvas uk-margin-medium-top uk-text-center">
-      <li class="uk-active"><a href="index-2.html">Courses</a></li>
-      <li ><a href="events.html">Events</a></li>
-      <li ><a href="course.html">Course</a></li>
-      <li ><a href="event.html">Event</a></li>
-      <li ><a href="search.html">Search</a></li>
-      <li ><a href="sign-in.html">Sign In</a></li>
-      <li ><a href="sign-up.html">Sign Up</a></li>
+      <li class="uk-active"><a href="/">Courses</a></li>
+      
+      <li ><a href="/">Course</a></li>
+      <li ><a href="{{ route('auth.login') }}">Sign In</a></li>
+      <li ><a href="{{ route('auth.register') }}">Sign Up</a></li>
     </ul>
     <div class="uk-margin-medium-top">
       <a class="uk-button uk-width-1-1 uk-button-primary-light" href="sign-up.html">Sign Up</a>

@@ -72,9 +72,12 @@
                                     </tr>
                                 @endforeach
                                 <tr>
-                                    <td>@if ($test_exists)
+                                    <td>
+                                        @if ($test_exists)
+                                         @if($purchased_course)
+
                           
-                            <h3>Test: {{ $lesson->test->title }}</h3>
+                             <h3>Test: {{ $lesson->test->title }}</h3>
                             @if (!is_null($test_result))
                                 <div class="alert alert-info">Your test score is: <h3 style="margin-top: 5px">{{ $test_result->test_result }}%</h3>
 
@@ -97,7 +100,9 @@
                             
                             
                             @endif
-                            
+                            @else
+                                Please <a href="{{ route('courses.show', [$lesson->course->slug]) }}">go back</a> and buy the course.
+                            @endif
                             
                         @endif
                     </td>
