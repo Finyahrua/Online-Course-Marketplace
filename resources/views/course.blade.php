@@ -1,10 +1,10 @@
 @extends('layouts.home')
 
 @section('main')
-	<div class="uk-container uk-container-large">
+	<div class="uk-container uk-container-large" style="margin-top: 10px">
 		<div class="uk-box-shadow-small uk-overflow-hidden uk-border-rounded uk-inline uk-background-center-center 
 		uk-background-cover uk-background-norepeat uk-background-blend-overlay uk-overlay-blend" 
-		{{-- style="{background-image: url(img/6.jpg);}" --}}
+		
         >
 			<div class="uk-padding-large">
 				<div data-uk-grid>
@@ -26,7 +26,7 @@
 								<span>({{ $course->students()->count() }})</span>
 								<span class="uk-margin-left"><span>{{ $course->students()->count() }}</span> students enrolled</span>
 							</div>
-							{{-- <p class="uk-margin-xsmall-top">Created by: ....</p> --}}
+							{{-- <p class="uk-margin-xsmall-top">Created by: {{ $teacher }}</p> --}}
 						</div>
 					</div>
 					<div class="uk-width-1-5@m"></div>

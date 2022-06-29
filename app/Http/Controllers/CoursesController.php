@@ -18,19 +18,12 @@ class CoursesController extends Controller
     {
         $course = Course::where('slug', $course_slug)->with('publishedLessons')->firstOrFail();
         $purchased_course = \Auth::check() && $course->students()->where('user_id', \Auth::id())->count() > 0;
-
-        return view('course', compact('course', 'purchased_course'));
+        
+       
+        return view('course', compact('course', 'purchased_course', ));
     }
 
-    // public function payment(Request $request)
-    // {
-    //     $course = Course::findOrFail($request->get('course_id'));
-    //     $this->createStripeCharge($request);
 
-    //     $course->students()->attach(\Auth::id());
-
-    //     return redirect()->back()->with('success', 'Payment completed successfully.');
-    // }
 
     public function payment(Request $request)
     {
@@ -42,25 +35,6 @@ class CoursesController extends Controller
         return redirect()->back()->with('success', 'Payment completed successfully.');
     }
 
-    // private function createStripeCharge($request)
-    // {
-    //     Stripe::setApiKey(env('STRIPE_API_KEY'));
-
-    //     try {
-    //         $customer = Customer::create([
-    //             'email' => $request->get('stripeEmail'),
-    //             'source'  => $request->get('stripeToken')
-    //         ]);
-
-    //         $charge = Charge::create([
-    //             'customer' => $customer->id,
-    //             'amount' => $request->get('amount'),
-    //             'currency' => "usd"
-    //         ]);
-    //     } catch (\Stripe\Error\Base $e) {
-    //         return redirect()->back()->withError($e->getMessage())->send();
-    //     }
-    // }
 
     private function createBrainTreePayment($request)
     {
@@ -93,8 +67,7 @@ class CoursesController extends Controller
                 $errorString .= 'Error: ' . $error->code . ": " . $error->message . "\n";
             }
 
-            // $_SESSION["errors"] = $errorString;
-            // header("Location: " . $baseUrl . "index.php");
+            
             return back()->withErrors('error', $errorString);
         }
     }

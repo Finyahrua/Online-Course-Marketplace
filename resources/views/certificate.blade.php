@@ -10,7 +10,7 @@
         text-align: center;
         margin: 0 0 20px 10%;
         justify-self: center;">
-    <div style="display:flex;flex-direction:row;justify-content:space-between;">
+    <div style="display:flex;flex-direction:row;justify-content:space-between;margin-top:20px">
           <div id="print_cer" style=" border: 20px solid tan;
             width: 750px;
             height: 450px;
