@@ -68,10 +68,10 @@
 
 @yield('main')
 
-</body>
 
 
-<footer class="uk-section uk-section-secondary uk-section-large">
+
+<footer class="uk-section uk-section-secondary uk-section-large" style="margin-bottom: -10%">
 	<div class="uk-container uk-text-muted">
 		<div class="uk-child-width-1-2@s uk-child-width-1-5@m" data-uk-grid>
 			<div>
